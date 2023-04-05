@@ -32,7 +32,7 @@ public class DryStreakCalculation implements ActionListener {
                 .flatMap(p -> Try.of(() -> new GeometricDistribution(null, p))
                         .mapTry(dist -> dist.inverseCumulativeProbability(0.5))
                         .toEither("Error performing calculation."))
-                .map(result -> String.format("<p><b>Expected dry streak: %s</b></p><hr><p>%s</p>", result, explanation))
+                .map(result -> String.format("<p>Expected dry streak: %s</p><br><p>%s</p>", result, explanation))
                 .map(this::asHtml)
                 .peek(outputField::setText)
                 .mapLeft(this::asHtml)

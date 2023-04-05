@@ -32,7 +32,7 @@ public class DryStreakPanel extends PluginPanel {
         c.weighty = 0;
         c.insets = new Insets(0, 0, 10, 0);
 
-        JShadowedLabel dropRateLabel = new JShadowedLabel("Drop rate (25, 1/25 or 0.04):");
+        JShadowedLabel dropRateLabel = new JShadowedLabel("<html>Enter drop rate:</html>");
         add(dropRateLabel, c);
         c.gridy++;
 
@@ -41,23 +41,20 @@ public class DryStreakPanel extends PluginPanel {
         dropRate.setBackground(ColorScheme.DARKER_GRAY_COLOR);
         dropRate.setHoverBackgroundColor(ColorScheme.DARK_GRAY_HOVER_COLOR);
         dropRate.setMinimumSize(new Dimension(0, 30));
-
         add(dropRate, c);
         c.gridy++;
 
         ColorJButton button = new ColorJButton("Calculate", new Color(255, 255, 255));
-
         add(button, c);
         c.gridy++;
 
-        JShadowedLabel resultLabel = new JShadowedLabel();
+        JShadowedLabel resultLabel = new JShadowedLabel("<html>Enter drop rate as 1/25, 25 or 0.04.</html>");
         add(resultLabel, c);
         c.gridy++;
 
         this.dryStreakCalculation = new DryStreakCalculation(dropRate, resultLabel);
         dropRate.addActionListener(dryStreakCalculation);
         button.addActionListener(dryStreakCalculation);
-
     }
 
     @Override
