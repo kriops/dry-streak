@@ -32,9 +32,9 @@ public class DryStreakCalculation implements ActionListener {
                 .onEmpty(() -> outputField.setText("Something went wrong."))
         ;
     }
-    private double calculate(int p) {
+    private int calculate(int p) {
         GeometricDistribution dist = new GeometricDistribution(null, 1.0 / p);
-        return dist.inverseCumulativeProbability(0.5);
+        return Math.toIntExact(dist.inverseCumulativeProbability(0.5));
     }
 
 }
