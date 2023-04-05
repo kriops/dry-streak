@@ -3,3 +3,8 @@ Makes it easy to apply the inverse function of the cumulative [geometric distrib
 
 ## Why?
 If something has a drop rate of 1/100, the probability of seeing your first drop exceeds 50% after approximately 68 kills. This is a question that commonly arises during gameplay, and this plugin is designed to simplify the calculation within RuneLite. While this functionality is available in another plugin, this one is specifically designed to present the result in a way that requires minimal knowledge of statistics to understand the output.
+
+## Usage
+1. Input the inverse drop rate. E.g. if the drop rate is `1/100`, you enter `100`.
+2. Click "Calculate".
+3. Read the result. This is how many monsters you are expected to
