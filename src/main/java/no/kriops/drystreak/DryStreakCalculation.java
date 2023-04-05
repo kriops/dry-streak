@@ -28,11 +28,10 @@ public class DryStreakCalculation implements ActionListener {
                 .filter(Objects::nonNull)
                 .filter(i -> i > 0)
                 .map(this::calculate)
-                .peek(p -> outputField.setText(String.format("Mean Dry Streak: %s", p)))
+                .peek(p -> outputField.setText(String.format("Expected dry streak: %s", p)))
                 .onEmpty(() -> outputField.setText("Something went wrong."))
         ;
     }
-
     private double calculate(int p) {
         GeometricDistribution dist = new GeometricDistribution(null, 1.0 / p);
         return dist.inverseCumulativeProbability(0.5);
