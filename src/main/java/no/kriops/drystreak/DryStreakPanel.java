@@ -2,7 +2,7 @@ package no.kriops.drystreak;
 
 import java.awt.*;
 import javax.inject.Inject;
-import javax.swing.BorderFactory;
+import javax.swing.*;
 
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.ui.ColorScheme;
@@ -13,20 +13,12 @@ import net.runelite.client.ui.components.shadowlabel.JShadowedLabel;
 
 @Slf4j
 public class DryStreakPanel extends PluginPanel {
-    private final DryStreakPlugin plugin;
-    private final DryStreakConfig config;
 
     private final DryStreakCalculation dryStreakCalculation;
     private final FlatTextField dropRate;
 
     @Inject
-    public DryStreakPanel(
-            DryStreakPlugin plugin,
-            DryStreakConfig config) {
-        this.plugin = plugin;
-        this.config = config;
-
-
+    public DryStreakPanel() {
         setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 10));
         setBackground(ColorScheme.DARK_GRAY_COLOR);
         setLayout(new GridBagLayout());
@@ -40,7 +32,7 @@ public class DryStreakPanel extends PluginPanel {
         c.weighty = 0;
         c.insets = new Insets(0, 0, 10, 0);
 
-        JShadowedLabel dropRateLabel = new JShadowedLabel("Drop rate (e.g. '60' for 1/60):");
+        JShadowedLabel dropRateLabel = new JShadowedLabel("Drop rate (25, 1/25 or 0.04):");
         add(dropRateLabel, c);
         c.gridy++;
 
@@ -58,13 +50,14 @@ public class DryStreakPanel extends PluginPanel {
         add(button, c);
         c.gridy++;
 
-        JShadowedLabel resultLabel = new JShadowedLabel("Mean Dry Streak: ");
+        JShadowedLabel resultLabel = new JShadowedLabel();
         add(resultLabel, c);
         c.gridy++;
 
         this.dryStreakCalculation = new DryStreakCalculation(dropRate, resultLabel);
         dropRate.addActionListener(dryStreakCalculation);
         button.addActionListener(dryStreakCalculation);
+
     }
 
     @Override
