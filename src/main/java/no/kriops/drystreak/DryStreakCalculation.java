@@ -2,13 +2,11 @@ package no.kriops.drystreak;
 
 import net.runelite.client.ui.components.FlatTextField;
 import net.runelite.client.ui.components.shadowlabel.JShadowedLabel;
+import org.apache.commons.lang3.math.Fraction;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Optional;
-
-import org.apache.commons.lang3.math.Fraction;
-import org.apache.commons.math3.distribution.GeometricDistribution;
 
 public class DryStreakCalculation implements ActionListener {
     final FlatTextField inputField;
@@ -42,15 +40,15 @@ public class DryStreakCalculation implements ActionListener {
                 return null;
             })
             .map(p -> {
-                if (0 < p && p <= 1) {
+                if (0 < p && p < 1) {
                     try {
-                        int result = new GeometricDistribution(null, p).inverseCumulativeProbability(0.5);
+                        int result = geometricMedian(p);
                         return String.format("<p>Expected dry streak: %s</p><br><p>%s</p>", result, explanation);
                     } catch (Exception ignored) {
                         return "Error performing calculation.";
                     }
                 } else {
-                    return "Drop rate must be greater than zero.";
+                    return "Drop rate must be greater than zero and less than one.";
                 }
             })
             .orElse("Unable to parse input.");
@@ -58,8 +56,16 @@ public class DryStreakCalculation implements ActionListener {
         outputField.setText(asHtml(message));
     }
 
-    private String asHtml(String input) {
+    private static String asHtml(String input) {
         return String.format("<html>%s</html>", input);
+    }
+
+    private static int geometricMedian(double p) {
+        return Math.max(0, (int) Math.ceil(-1 / log2(1 - p)) - 1);
+    }
+
+    private static double log2(double x) {
+        return Math.log(x) / Math.log(2.0);
     }
 
 }

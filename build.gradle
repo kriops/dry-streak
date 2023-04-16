@@ -21,11 +21,6 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
 	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
 
-	// https://mvnrepository.com/artifact/org.apache.commons/commons-math3
-	implementation group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
-
-
-
 	testImplementation 'junit:junit:4.13.1'
 	testImplementation group: 'net.runelite', name:'client', version: runeLiteVersion
 	testImplementation group: 'net.runelite', name:'jshell', version: runeLiteVersion
