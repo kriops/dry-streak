@@ -2,7 +2,6 @@ package no.kriops.drystreak;
 
 import com.google.inject.Provides;
 
-import javax.imageio.ImageIO;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
@@ -10,10 +9,10 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import javax.annotation.Nullable;
 import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.ui.NavigationButton;
+import net.runelite.client.util.ImageUtil;
 
 
 @Slf4j
@@ -42,7 +41,7 @@ public class DryStreakPlugin extends Plugin {
         dryStreakPanel = injector.getInstance(DryStreakPanel.class);
         BufferedImage icon;
         try {
-            icon = ImageIO.read(new File("icon.png"));
+            icon = ImageUtil.loadImageResource(getClass(), "/icon.png");
         } catch (Exception e) {
             icon = new BufferedImage(40, 40, BufferedImage.TYPE_INT_RGB);
         }
