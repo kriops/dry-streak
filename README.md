@@ -8,6 +8,3 @@ If something has a drop rate of 1/100, the probability of seeing your first drop
 1. Input the drop rate. If the drop rate is `1 in 100`, you can enter `100`, `1/100` or `0.01`.
 2. Click "Calculate".
 3. Read the result.
-
-## Links
-[Plugin Hub-page](https://runelite.net/plugin-hub/show/dry-streak)
